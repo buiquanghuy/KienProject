@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ProjectKien500k</string>
+    <string name="title_home">Trang chủ</string>
+    <string name="title_dashboard">Danh mục</string>
+    <string name="title_notifications">thông báo</string>
+    <string name="view_all">XEM TẤT CẢ</string>
+    <string name="title_profile">Cá nhân</string>
+    <string name="title_search">Tìm kiếm</string>
+    <string name="allProduct">Tất cả sản phẩm</string>
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/imageItemCart"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/def" />
+
+    <TextView
+        android:id="@+id/nameItemCart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:paddingRight="15dp"
+        android:text="Tuổi trẻ dáng giá bao nhiều nhà nước chán vl hôm nay mình cảm giác ngón bức khó chiu vcl"
+        android:textColor="@color/colorTextTitle"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRemove"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imageItemCart"
+        app:layout_constraintTop_toTopOf="@+id/imageItemCart" />
+
+    <ImageView
+        android:id="@+id/buttonRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:padding="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nameItemCart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_close_12_gray" />
+
+    <TextView
+        android:id="@+id/priceItemCart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="1.000.000.000 đ"
+        android:textColor="@color/colorPrices"
+        app:layout_constraintEnd_toEndOf="@+id/nameItemCart"
+        app:layout_constraintStart_toStartOf="@+id/nameItemCart"
+        app:layout_constraintTop_toBottomOf="@+id/nameItemCart" />
+
+    <ImageView
+        android:id="@+id/buttonMinus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/qualityItemCart"
+        app:layout_constraintStart_toStartOf="@+id/priceItemCart"
+        app:layout_constraintTop_toBottomOf="@+id/priceItemCart"
+        app:srcCompat="@drawable/ic_baseline_indeterminate_check_box_12_gray" />
+
+    <ImageView
+        android:id="@+id/buttonPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/qualityItemCart"
+        app:layout_constraintStart_toEndOf="@+id/qualityItemCart"
+        app:layout_constraintTop_toTopOf="@+id/qualityItemCart"
+        app:srcCompat="@drawable/ic_baseline_add_box_12_gray" />
+
+    <TextView
+        android:id="@+id/qualityItemCart"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="1"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonMinus"
+        app:layout_constraintEnd_toStartOf="@+id/buttonPlus"
+        app:layout_constraintStart_toEndOf="@+id/buttonMinus"
+        app:layout_constraintTop_toTopOf="@+id/buttonMinus"
+        app:layout_constraintVertical_bias="0.428" />
+</androidx.constraintlayout.widget.ConstraintLayout>
