@@ -1,10 +1,11 @@
-package com.example.projectkien500k;
+package com.example.projectkien500k.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 
+import com.example.projectkien500k.R;
 import com.example.projectkien500k.databinding.ActivityCartBinding;
 import com.example.projectkien500k.model.data.Product;
 import com.example.projectkien500k.utils.FakeDataUtil;

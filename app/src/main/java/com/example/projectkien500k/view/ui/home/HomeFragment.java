@@ -1,4 +1,4 @@
-package com.example.projectkien500k.ui.home;
+package com.example.projectkien500k.view.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,21 +6,18 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
-import com.example.projectkien500k.MainActivity;
-import com.example.projectkien500k.ProductActivity;
+import com.example.projectkien500k.view.MainActivity;
+import com.example.projectkien500k.view.ProductActivity;
 import com.example.projectkien500k.R;
 import com.example.projectkien500k.databinding.FragmentHomeBinding;
 import com.example.projectkien500k.model.data.Product;

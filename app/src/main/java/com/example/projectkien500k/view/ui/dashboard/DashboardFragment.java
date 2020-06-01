@@ -1,4 +1,4 @@
-package com.example.projectkien500k.ui.dashboard;
+package com.example.projectkien500k.view.ui.dashboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.projectkien500k.R;
 import com.example.projectkien500k.databinding.FragmentDashboardBinding;

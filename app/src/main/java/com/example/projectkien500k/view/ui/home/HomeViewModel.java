@@ -1,4 +1,4 @@
-package com.example.projectkien500k.ui.home;
+package com.example.projectkien500k.view.ui.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

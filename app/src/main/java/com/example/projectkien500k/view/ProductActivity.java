@@ -1,9 +1,10 @@
-package com.example.projectkien500k;
+package com.example.projectkien500k.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.projectkien500k.R;
 import com.example.projectkien500k.databinding.ActivityProductBinding;
 
 public class ProductActivity extends AppCompatActivity {

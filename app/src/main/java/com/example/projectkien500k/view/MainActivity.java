@@ -1,17 +1,17 @@
-package com.example.projectkien500k;
+package com.example.projectkien500k.view;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.projectkien500k.R;
 import com.example.projectkien500k.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_cart:
-                startActivity(new Intent(MainActivity.this,CartActivity.class));
+                startActivity(new Intent(MainActivity.this, CartActivity.class));
                 return true;
             case R.id.menu_search:
                 return true;

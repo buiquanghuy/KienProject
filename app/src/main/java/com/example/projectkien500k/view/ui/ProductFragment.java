@@ -1,4 +1,4 @@
-package com.example.projectkien500k.ui;
+package com.example.projectkien500k.view.ui;
 
 import androidx.lifecycle.ViewModelProviders;
 

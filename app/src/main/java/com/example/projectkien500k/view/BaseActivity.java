@@ -1,4 +1,4 @@
-package com.example.projectkien500k;
+package com.example.projectkien500k.view;
 
 import android.os.Bundle;
 
