@@ -31,6 +31,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.onEve
     }
     public void initCartAdapter()
     {
+        /// test commit github
         cartAdapter=new CartAdapter(list,this,this);
         binding.recyclerViewCart.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         binding.recyclerViewCart.setAdapter(cartAdapter);
