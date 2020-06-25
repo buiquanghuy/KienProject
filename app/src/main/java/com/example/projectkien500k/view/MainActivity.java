@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
         binding.toolbar.setTitleTextColor(getResources().getColor(R.color.white));
     }
+
     public void setTitle(String title)
     {
         binding.toolbar.setTitle(title);

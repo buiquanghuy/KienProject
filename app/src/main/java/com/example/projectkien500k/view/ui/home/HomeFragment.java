@@ -16,6 +16,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projectkien500k.model.data.Banner;
+import com.example.projectkien500k.model.response.ProductResponse;
+import com.example.projectkien500k.model.viewmodel.bannerViewModel;
+import com.example.projectkien500k.model.viewmodel.productViewModel;
 import com.example.projectkien500k.view.MainActivity;
 import com.example.projectkien500k.view.ProductActivity;
 import com.example.projectkien500k.R;
@@ -25,6 +29,7 @@ import com.example.projectkien500k.model.viewmodel.ViewProduct;
 import com.example.projectkien500k.utils.RecyclerViewUtil;
 import com.example.projectkien500k.view.adapter.ProductAdapter;
 import com.example.projectkien500k.view.adapter.ViewPagerAdapter;
+import com.example.projectkien500k.view.ui.ProductViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -35,47 +40,44 @@ import java.util.TimerTask;
 public class HomeFragment extends Fragment implements ProductAdapter.OnClickItemProduct {
 
     private HomeViewModel homeViewModel;
+    private productViewModel productViewModel;
+    private bannerViewModel mbannerViewModel;
     private FragmentHomeBinding binding;
     ViewPagerAdapter viewPagerAdapter;
     ProductAdapter productAdapter;
-
+    ProductAdapter topProductAdapter;
+    ProductAdapter forUProductAdapter;
     Handler handler;
     Runnable Update;
     List<ViewProduct> list=new ArrayList<>();
-
+    List<ViewProduct> listTopProduct=new ArrayList<>();
+    List<ViewProduct> listforUProduct=new ArrayList<>();
+    List<String> listBanner=new ArrayList<>();
     // để viewpapger chạy nhé bạn
     int currentPage = 0;
     Timer timer;
     final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
     final long PERIOD_MS = 3000; // time in milliseconds between successive task executions.
 
-    String[] iamgeUrls=new String[]
-            {
-                    "https://salt.tikicdn.com/cache/w885/ts/banner/3a/21/17/c91cfbb87be7f222cde8873fbf1fa5f3.jpg",
-                    "https://salt.tikicdn.com/cache/w885/ts/banner/da/32/51/f8477d7c6f55bf7f539e86cd6cd9efa0.png",
-                    "https://salt.tikicdn.com/cache/w885/ts/banner/87/92/6a/9255ab6c720ebb39c61aa509af9f2a87.jpg",
-                    "https://salt.tikicdn.com/cache/w885/ts/banner/63/7d/14/f16b099192d246e5ac1561c4ee273c34.jpg",
-                    "https://salt.tikicdn.com/cache/w885/ts/banner/c5/d9/59/8241baa29e4967a5c29c6072feefceac.jpg",
-                    "https://salt.tikicdn.com/cache/w885/ts/banner/36/91/93/022cfb904ad517ad34101b542e4e6837.jpg",
-            };
+    String[] iamgeUrls ;   // banner quảng cáo đm
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding=FragmentHomeBinding.inflate(inflater,container,false);
-        homeViewModel =
-                new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+
+        homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        productViewModel = new ViewModelProvider(requireActivity()).get(productViewModel.class);
+        mbannerViewModel=new ViewModelProvider(requireActivity()).get(bannerViewModel.class);
+
       //  View root = inflater.inflate(R.layout.fragment_home, container, false);
         View root=binding.getRoot();
        // final TextView textView = root.findViewById(R.id.text_home);
         BottomNavigationView bottomNavigationView=getActivity().findViewById(R.id.nav_view);
         RecyclerViewUtil.hideBottomNavigationOnScroll(getContext(),bottomNavigationView,binding.nestedScrollViewHome);
-        initViewPager();
+
         initProductAdapter();
-        homeViewModel.getListProduct().observe(getViewLifecycleOwner(), new Observer<List<ViewProduct>>() {
-            @Override
-            public void onChanged(List<ViewProduct> viewProducts) {
-                updateData(viewProducts);
-            }
-        });
+        populateData();
+
+
         homeViewModel.setDataListProduct(new ArrayList<ViewProduct>());
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -86,6 +88,74 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
         ((MainActivity) getActivity()).setTitle(R.string.title_home);
         return root;
     }
+
+    private void populateData() { // tải dữ liệu về
+        productViewModel.getAllProduct().observe(requireActivity(), new Observer<ProductResponse>() {
+            @Override
+            public void onChanged(ProductResponse productResponse) {
+                if(productResponse != null){
+                    if(productResponse.getStatus().equals("SUCCESS")){
+                        List<Product> listpro = productResponse.getData();
+                        for (int i=0;i<listpro.size();i++){
+                            Product pro =listpro.get(i);
+                            list.add(new ViewProduct(pro.getName(),pro.getPrice(),pro.getIdProduct(),pro.getDescribe(),pro.getImage()));
+                        }
+                        productAdapter.notifyDataSetChanged();
+                    }
+                }
+
+            }
+        });
+
+        productViewModel.getTopProduct().observe(requireActivity(), new Observer<ProductResponse>() {
+            @Override
+            public void onChanged(ProductResponse productResponse) {
+                if(productResponse != null){
+                    if(productResponse.getStatus().equals("SUCCESS")){
+                        List<Product> listpro = productResponse.getData();
+                        for (int i=0;i<listpro.size();i++){
+                            Product pro = listpro.get(i);
+                            listTopProduct.add(new ViewProduct(pro.getName(),pro.getPrice(),pro.getIdProduct(),pro.getDescribe(),pro.getImage()));
+                        }
+                        topProductAdapter.notifyDataSetChanged();
+                    }
+                }
+
+            }
+        });
+
+        productViewModel.getProductForU().observe(requireActivity(), new Observer<ProductResponse>() {
+            @Override
+            public void onChanged(ProductResponse productResponse) {
+                if(productResponse != null){
+                    if(productResponse.getStatus().equals("SUCCESS")){
+                        List<Product> listpro = productResponse.getData();
+                        for (int i=0;i<listpro.size();i++){
+                            Product pro =listpro.get(i);
+                            listforUProduct.add(new ViewProduct(pro.getName(),pro.getPrice(),pro.getIdProduct(),pro.getDescribe(),pro.getImage()));
+                        }
+                        forUProductAdapter.notifyDataSetChanged();
+                    }
+                }
+
+            }
+        });
+
+        mbannerViewModel.getBanner().observe(requireActivity(), new Observer<List<Banner>>() {
+            @Override
+            public void onChanged(List<Banner> banner) {
+                if(banner.size()>0){
+                    iamgeUrls=new String[banner.size()];
+                    for(int i=0;i<banner.size();i++)
+                    {
+                        iamgeUrls[i] = banner.get(i).getImage();
+                    }
+                    initViewPager();
+                }
+            }
+        });
+    }
+
     private void initViewPager()
     {
         viewPagerAdapter=new ViewPagerAdapter(getContext(),iamgeUrls);
@@ -95,22 +165,19 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
     private void initProductAdapter()
     {
         productAdapter=new ProductAdapter(getContext(),list,this);
+        topProductAdapter=new ProductAdapter(getContext(),listTopProduct,this);
+        forUProductAdapter=new ProductAdapter(getContext(),listforUProduct,this);
+
         binding.recycleviewBestSell.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL,false));
-        binding.recycleviewBestSell.setAdapter(productAdapter);
+        binding.recycleviewBestSell.setAdapter(topProductAdapter);
 
         binding.recyclerViewForU.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL,false));
-        binding.recyclerViewForU.setAdapter(productAdapter);
+        binding.recyclerViewForU.setAdapter(forUProductAdapter);
 
         binding.recyclerViewAll.setLayoutManager(new GridLayoutManager(getContext(),3));
         binding.recyclerViewAll.setAdapter(productAdapter);
 
 
-    }
-    public void updateData(List<ViewProduct> list)
-    {
-        if (list!=null) this.list.clear();
-        this.list.addAll(list);
-        productAdapter.notifyDataSetChanged();
     }
     private void runViewPaper()
     {

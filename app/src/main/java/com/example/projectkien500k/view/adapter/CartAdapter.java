@@ -35,13 +35,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-
-
+        holder.itemCartBinding.nameItemCart.setText(""+list.get(position).getName());
+        holder.itemCartBinding.priceItemCart.setText(""+list.get(position).getPrice());
+        holder.itemCartBinding.qualityItemCart.setText(""+list.get(position).getName());
+       // holder.itemCartBinding.imageItemCart.setText(""+list.get(position).getName());
     }
     public void OnClickEvent(ItemCartBinding itemCartBinding)
     {
-
     }
     public int getTotalPrice()
     {
