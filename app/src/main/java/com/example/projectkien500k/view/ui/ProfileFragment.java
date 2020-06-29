@@ -13,10 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.projectkien500k.R;
+import com.example.projectkien500k.model.data.Client;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class ProfileFragment extends Fragment {
 
     private ProfileViewModel mViewModel;
+    Client mclient;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -34,5 +40,26 @@ public class ProfileFragment extends Fragment {
         mViewModel = new ViewModelProvider(getActivity()).get(ProfileViewModel.class);
         // TODO: Use the ViewModel
     }
+
+    @Override
+    public void onStart() {
+        if (!EventBus.getDefault().isRegistered(requireActivity())) {
+            EventBus.getDefault().register(requireActivity());
+        }
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(requireActivity());
+        super.onStop();
+    }
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(Client event) {
+        mclient = event;
+    }
+
+
+
 
 }

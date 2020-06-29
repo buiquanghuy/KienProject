@@ -32,6 +32,8 @@ import com.example.projectkien500k.view.adapter.ViewPagerAdapter;
 import com.example.projectkien500k.view.ui.ProductViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -212,8 +214,22 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
     }
 
     @Override
-    public void onCLick(int type, Product product) {
-        getActivity().startActivity(new Intent(getActivity(), ProductActivity.class));
+     public void onStart() {
+        if (!EventBus.getDefault().isRegistered(requireActivity())) {
+            EventBus.getDefault().register(requireActivity());
+        }
+        super.onStart();
+    }
 
+    @Override
+     public void onStop() {
+        EventBus.getDefault().unregister(requireActivity());
+        super.onStop();
+    }
+
+    @Override
+    public void onCLick(int type, Product product) {
+        EventBus.getDefault().postSticky(product);
+        getActivity().startActivity(new Intent(getActivity(), ProductActivity.class));
     }
 }

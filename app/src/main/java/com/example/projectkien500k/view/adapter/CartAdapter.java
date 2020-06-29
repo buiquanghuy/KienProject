@@ -10,16 +10,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectkien500k.databinding.ItemCartBinding;
 import com.example.projectkien500k.databinding.ItemProductBinding;
+import com.example.projectkien500k.model.data.DetailBill;
 import com.example.projectkien500k.model.data.Product;
+import com.example.projectkien500k.utils.RoundedTransformation;
+import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
-    List<Product> list;
+    List<DetailBill> list;
     Context context;
     onEventCartAdapter onEventCartAdapter;
 
-    public CartAdapter(List<Product> list, Context context, CartAdapter.onEventCartAdapter onEventCartAdapter) {
+    public CartAdapter(List<DetailBill> list, Context context, CartAdapter.onEventCartAdapter onEventCartAdapter) {
         this.list = list;
         this.context = context;
         this.onEventCartAdapter = onEventCartAdapter;
@@ -36,9 +41,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.itemCartBinding.nameItemCart.setText(""+list.get(position).getName());
-        holder.itemCartBinding.priceItemCart.setText(""+list.get(position).getPrice());
-        holder.itemCartBinding.qualityItemCart.setText(""+list.get(position).getName());
+        holder.itemCartBinding.priceItemCart.setText(format(list.get(position).getPrice())+"VND");
+        holder.itemCartBinding.qualityItemCart.setText(""+list.get(position).getQuantity());
        // holder.itemCartBinding.imageItemCart.setText(""+list.get(position).getName());
+        Picasso.get()
+                .load(list.get(position).getImage())
+                .fit()
+                .transform(new RoundedTransformation(16, 0))
+                .centerCrop()
+                .into( holder.itemCartBinding.imageItemCart);
     }
     public void OnClickEvent(ItemCartBinding itemCartBinding)
     {
@@ -65,5 +76,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             super(itemCartBinding.getRoot());
             this.itemCartBinding=itemCartBinding;
         }
+    }
+    public String format(double number) {
+        NumberFormat formatter = new DecimalFormat("#,###,###");
+        return formatter.format(number);
     }
 }

@@ -44,5 +44,11 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.projectkien500k.view.ui.ProfileFragment"
         android:label="profile_fragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+    </fragment>
 </navigation>
