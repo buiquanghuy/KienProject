@@ -94,9 +94,27 @@ public class billViewModel extends ViewModel {
         return newsData;
     }
 
-    public MutableLiveData<BillDetailResponse> changeCart(String type,int id_bill,int id_product){
+    public MutableLiveData<BillDetailResponse> changeCart(String type,int id_detail,int id_product){
         final MutableLiveData<BillDetailResponse>  newsData = new MutableLiveData<>();
-        apIbill.changeCart(type,id_bill,id_product).enqueue(new Callback<BillDetailResponse>() {
+        apIbill.changeCart(type,id_detail,id_product).enqueue(new Callback<BillDetailResponse>() {
+            @Override
+            public void onResponse(Call<BillDetailResponse> call, Response<BillDetailResponse> response) {
+                if(response.isSuccessful()){
+                    newsData.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BillDetailResponse> call, Throwable t) {
+
+            }
+        });
+        return newsData;
+    }
+
+    public MutableLiveData<BillDetailResponse> removeCart(int id_detail){
+        final MutableLiveData<BillDetailResponse>  newsData = new MutableLiveData<>();
+        apIbill.removeCart(id_detail).enqueue(new Callback<BillDetailResponse>() {
             @Override
             public void onResponse(Call<BillDetailResponse> call, Response<BillDetailResponse> response) {
                 if(response.isSuccessful()){

@@ -39,8 +39,12 @@ public interface APIbill {
     @FormUrlEncoded
     @POST("bill/changeCart")
     Call<BillDetailResponse> changeCart(@Field("type") String type,
-                                       @Field("id_bill") int id_bill,
+                                       @Field("id_detail") int id_detail,
                                        @Field("id_product") int id_product);
+
+    @FormUrlEncoded
+    @POST("bill/removeCart")
+    Call<BillDetailResponse> removeCart( @Field("id_detail") int id_detail);
 
 
     @POST("bill/orderCart")
