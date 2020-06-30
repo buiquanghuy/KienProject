@@ -116,17 +116,17 @@ class BillController extends Controller
         $type = $rq->input('type');
         if ($type == 'ADD') {
             $billDetail = DB::table('detail_bill')
-                ->where('id_bill', $rq->input('id_bill'))
+                ->where('id_detail', $rq->input('id_detail'))
                 ->where('id_product', $rq->input('id_product'))
                 ->increment('quantity');
         } else {
             $billDetail = DB::table('detail_bill')
-                ->where('id_bill', $rq->input('id_bill'))
+                ->where('id_detail', $rq->input('id_detail'))
                 ->where('id_product', $rq->input('id_product'))
                 ->decrement('quantity');
         }
 
-        return response()->json(['status' => 'SUCCESS', 'mess' => 'đã thay đổi nè', 'data' => $billDetail]);
+        return response()->json(['status' => 'SUCCESS', 'mess' => 'đã thay đổi nè', 'data' => null]);
     }
 
     public function orderCart(Request $rq)
@@ -145,6 +145,15 @@ class BillController extends Controller
         ->update(['status_bill' => 'b2']);
 
         return response()->json(['status' => 'SUCCESS', 'mess' => 'đặt hàng thành công rồi nè', 'data' => null]);
+    }
+
+    public function removeCart(Request $rq)
+    {
+        $billDetail = DB::table('detail_bill')
+        ->where('id_detail', $rq->input('id_detail'))
+        ->delete();
+
+        return response()->json(['status' => 'SUCCESS', 'mess' => 'đã xóa thành công', 'data' => null]);
     }
 
 

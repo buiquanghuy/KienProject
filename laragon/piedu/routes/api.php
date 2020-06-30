@@ -54,6 +54,7 @@ Route::post('bill/changeCart', 'BillController@changeCart')->name('changeCart');
 Route::post('bill/orderCart', 'BillController@orderCart')->name('orderCart');
 Route::post('bill/loadbill', 'BillController@loadbill')->name('loadbill');
 Route::post('bill/getListBillDetail', 'BillController@getListBillDetail')->name('getListBillDetail');
+Route::post('bill/removeCart', 'BillController@removeCart')->name('removeCart');
 // Route::post('bill/loadDetailbill', 'BillController@loadDetailbill')->name('loadDetailbill');
 
 
