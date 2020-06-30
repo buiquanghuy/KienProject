@@ -135,8 +135,8 @@ public class CartActivity extends BaseActivity implements onEventAdapter {
 
     @Override
     public void onRemoveProduct(DetailBill detail, int position) {
-        list.remove(detail);
-        cartAdapter.notifyItemChanged(position);
+        list.remove(position);
+        cartAdapter.notifyDataSetChanged();
         totalMoney(list);
         mbillViewModel.removeCart(detail.getIdDetail()).observe(CartActivity.this, new Observer<BillDetailResponse>() {
             @Override

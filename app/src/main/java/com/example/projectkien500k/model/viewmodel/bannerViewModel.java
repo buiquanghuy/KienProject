@@ -23,7 +23,9 @@ public class bannerViewModel extends ViewModel {
         apIbanner.getBanner().enqueue(new Callback<List<Banner>>() {
             @Override
             public void onResponse(Call<List<Banner>> call, Response<List<Banner>> response) {
-                newsData.setValue(response.body());
+                if(response.isSuccessful()){
+                    newsData.setValue(response.body());
+                }
             }
 
             @Override
