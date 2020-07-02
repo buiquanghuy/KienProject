@@ -19,6 +19,7 @@ import com.example.projectkien500k.databinding.FragmentHomeBinding;
 import com.example.projectkien500k.databinding.FragmentProfileBinding;
 import com.example.projectkien500k.model.data.Client;
 import com.example.projectkien500k.utils.RoundedTransformation;
+import com.example.projectkien500k.view.LoginActivity;
 import com.example.projectkien500k.view.UpdateUserActivity;
 import com.squareup.picasso.Picasso;
 
@@ -57,6 +58,17 @@ public class ProfileFragment extends Fragment {
                 startActivity(new Intent(requireActivity(), UpdateUserActivity.class));
             }
         });
+
+        binding.button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EventBus.getDefault().removeAllStickyEvents();
+                Common.mclient=null;
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
+
     }
 
     @Override

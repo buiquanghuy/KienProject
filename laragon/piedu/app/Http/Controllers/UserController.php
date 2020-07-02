@@ -64,10 +64,17 @@ class UserController extends Controller
                 'password' => $password,
             );
             $lastId = DB::table('client')->insertGetId($data);
+            $dataAddress = array(
+                'address' => $request->input('address'),
+                'phone_number' => $phone,
+                'id_client' => $lastId,
+                
+            );
+            DB::table('address')->insert($dataAddress);
             return response()->json([
                 'status' => 'SUCCESS',
                 'mess' => 'SUCCESS',
-                'data' => $lastId
+                'data' => null
             ]);
         }
     }

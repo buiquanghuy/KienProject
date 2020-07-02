@@ -55,5 +55,23 @@ public class clientViewModel extends ViewModel {
         return newsData;
     }
 
+    public MutableLiveData<ClientResponse> Register(String name,String phone,String email,String account_name,String password,String addresss){
+        final MutableLiveData<ClientResponse>  newsData = new MutableLiveData<>();
+        apIclient.Register(name,phone,email,account_name,password,addresss).enqueue(new Callback<ClientResponse>() {
+            @Override
+            public void onResponse(Call<ClientResponse> call, Response<ClientResponse> response) {
+                if(response.isSuccessful()){
+                    newsData.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ClientResponse> call, Throwable t) {
+
+            }
+        });
+        return newsData;
+    }
+
 
 }

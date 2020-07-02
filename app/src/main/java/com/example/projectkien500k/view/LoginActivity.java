@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,6 +19,8 @@ import com.example.projectkien500k.model.viewmodel.clientViewModel;
 import com.example.projectkien500k.view.ui.home.HomeViewModel;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class LoginActivity extends BaseActivity {
      ActivityLoginBinding binding;
@@ -27,6 +30,9 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.toolbar.setTitleTextColor(getColor(R.color.white));
+        binding.toolbar.setTitle("Đăng Nhập");
+
         mclientViewModel = new ViewModelProvider(this).get(clientViewModel.class);
         HandleLogin();
     }
@@ -53,5 +59,17 @@ public class LoginActivity extends BaseActivity {
                 });
             }
         });
+
+        binding.button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+            }
+        });
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(Client event) {
+        Log.d("TAG", "onMessageEvent: "+event);
     }
 }

@@ -22,4 +22,16 @@ public interface APIclient {
                                     @Field("email")  String email
                                     );
 
+
+    @FormUrlEncoded
+    @POST("user/Register")
+    Call<ClientResponse> Register(
+                                    @Field("name") String name,
+                                    @Field("phone")  String phone,
+                                    @Field("email")  String email,
+                                    @Field("account_name")  String account_name,
+                                    @Field("password")  String password,
+                                    @Field("address")  String address
+    );
+
 }
