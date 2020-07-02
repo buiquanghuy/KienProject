@@ -79,7 +79,6 @@ class UserController extends Controller
         $client->name = $request->input('name');
         $client->phone = $request->input('phone');
         $client->email = $request->input('email');
-        $client->password = $request->input('password');
         $client->save();
         return response()->json([
             'status' => 'SUCCESS',

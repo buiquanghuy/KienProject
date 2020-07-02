@@ -37,4 +37,23 @@ public class clientViewModel extends ViewModel {
     }
 
 
+    public MutableLiveData<ClientResponse> updateUser(String id_client,String name,String phone,String email){
+        final MutableLiveData<ClientResponse>  newsData = new MutableLiveData<>();
+        apIclient.updateUser(id_client,name,phone,email).enqueue(new Callback<ClientResponse>() {
+            @Override
+            public void onResponse(Call<ClientResponse> call, Response<ClientResponse> response) {
+                if(response.isSuccessful()){
+                    newsData.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ClientResponse> call, Throwable t) {
+
+            }
+        });
+        return newsData;
+    }
+
+
 }

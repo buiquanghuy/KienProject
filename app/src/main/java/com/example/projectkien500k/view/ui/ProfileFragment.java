@@ -2,6 +2,7 @@ package com.example.projectkien500k.view.ui;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.example.projectkien500k.databinding.FragmentHomeBinding;
 import com.example.projectkien500k.databinding.FragmentProfileBinding;
 import com.example.projectkien500k.model.data.Client;
 import com.example.projectkien500k.utils.RoundedTransformation;
+import com.example.projectkien500k.view.UpdateUserActivity;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
@@ -48,6 +50,13 @@ public class ProfileFragment extends Fragment {
         binding.textView16.setText(""+Common.mclient.getName());
         binding.textView17.setText(""+Common.mclient.getEmail());
         binding.textView18.setText(""+Common.mclient.getPhone());
+
+        binding.button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireActivity(), UpdateUserActivity.class));
+            }
+        });
     }
 
     @Override

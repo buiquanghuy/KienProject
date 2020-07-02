@@ -14,4 +14,12 @@ public interface APIclient {
     @POST("user/Login")
     Call<ClientResponse> loginhandle(@Field("account_name") String tk , @Field("password")  String mk);
 
+    @FormUrlEncoded
+    @POST("user/updateUser")
+    Call<ClientResponse> updateUser(@Field("id_client") String id_client,
+                                    @Field("name") String name,
+                                    @Field("phone")  String phone,
+                                    @Field("email")  String email
+                                    );
+
 }
