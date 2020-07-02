@@ -13,7 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.projectkien500k.R;
+import com.example.projectkien500k.application.Common;
+import com.example.projectkien500k.databinding.FragmentHomeBinding;
+import com.example.projectkien500k.databinding.FragmentProfileBinding;
 import com.example.projectkien500k.model.data.Client;
+import com.example.projectkien500k.utils.RoundedTransformation;
+import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -24,6 +29,8 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel mViewModel;
     Client mclient;
 
+    FragmentProfileBinding binding;
+
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
     }
@@ -31,7 +38,16 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        binding = FragmentProfileBinding.inflate(inflater,container,false);
+        View root=binding.getRoot();
+        initProfileClient();
+        return root;
+    }
+
+    private void initProfileClient() {
+        binding.textView16.setText(""+Common.mclient.getName());
+        binding.textView17.setText(""+Common.mclient.getEmail());
+        binding.textView18.setText(""+Common.mclient.getPhone());
     }
 
     @Override
@@ -54,12 +70,5 @@ public class ProfileFragment extends Fragment {
         EventBus.getDefault().unregister(requireActivity());
         super.onStop();
     }
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(Client event) {
-        mclient = event;
-    }
-
-
-
 
 }

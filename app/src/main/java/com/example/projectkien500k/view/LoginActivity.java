@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.projectkien500k.R;
+import com.example.projectkien500k.application.Common;
 import com.example.projectkien500k.databinding.ActivityLoginBinding;
 import com.example.projectkien500k.model.data.Client;
 import com.example.projectkien500k.model.response.ClientResponse;
@@ -43,6 +44,7 @@ public class LoginActivity extends BaseActivity {
                             Toast.makeText(LoginActivity.this, "Thành công", Toast.LENGTH_SHORT).show();
                             Client client=clientResponse.getData();
                             EventBus.getDefault().postSticky(client);
+                            Common.mclient=client;
                             startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         }else{
                             Toast.makeText(LoginActivity.this, "Tài khoản hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();

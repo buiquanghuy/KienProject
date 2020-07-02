@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.BaseAdapter;
 
+import com.example.projectkien500k.R;
 import com.example.projectkien500k.databinding.ActivityListProductBinding;
 import com.example.projectkien500k.databinding.ActivityMainBinding;
 import com.example.projectkien500k.model.data.Address;
@@ -49,6 +50,8 @@ public class ListProductActivity extends BaseActivity implements ProductAdapter.
         super.onCreate(savedInstanceState);
         binding = ActivityListProductBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.toolbar.setTitleTextColor(getColor(R.color.white));
+        binding.toolbar.setTitle("Danh sách sản phẩm");
         mproductViewModel = new ViewModelProvider(this).get(productViewModel.class);
         mbillViewModel = new ViewModelProvider(this).get(billViewModel.class);
          initAdapter();

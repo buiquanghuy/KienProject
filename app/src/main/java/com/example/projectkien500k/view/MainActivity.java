@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.projectkien500k.R;
+import com.example.projectkien500k.application.Common;
 import com.example.projectkien500k.databinding.ActivityMainBinding;
 import com.example.projectkien500k.model.data.Address;
 import com.example.projectkien500k.model.data.Bill;
@@ -72,7 +74,14 @@ public class MainActivity extends BaseActivity {
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 switch (destination.getId()) {
                     case R.id.navigation_profile:
-
+                        binding.toolbar.setTitle("Cá nhân");
+                        break;
+                    case R.id.navigation_dashboard:
+                        binding.toolbar.setTitle("Danh mục sản phẩm");
+                        break;
+                    case R.id.navigation_search:
+                        binding.toolbar.setTitle("Tìm kiếm");
+                        break;
                     default:
                         break;
                 }
