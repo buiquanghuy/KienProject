@@ -1,5 +1,6 @@
 package com.example.projectkien500k.service;
 import com.example.projectkien500k.model.data.Product;
+import com.example.projectkien500k.model.data.TypeProduct;
 import com.example.projectkien500k.model.response.ProductResponse;
 
 import java.util.List;
@@ -20,4 +21,10 @@ public interface APIproduct {
     @GET("product/getProductForU")
     Call<ProductResponse> getProductForU();
 
+    @GET("productType/getProductType")
+    Call<List<TypeProduct>> getProductType();
+
+    @FormUrlEncoded
+    @POST("product/getAllWithType")
+    Call<ProductResponse> getProductWithType(@Field("id_type") int id_type);
 }

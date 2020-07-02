@@ -11,6 +11,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
     public static String basePath = "http://192.168.2.32:80/piedu/public/api/";
+    //public static String basePath = "http://43d2aebdbcea.ngrok.io/api/";
+
 
     private static HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
     private static OkHttpClient okHttpClient = new OkHttpClient.Builder()

@@ -29,7 +29,6 @@ import com.example.projectkien500k.model.viewmodel.ViewProduct;
 import com.example.projectkien500k.utils.RecyclerViewUtil;
 import com.example.projectkien500k.view.adapter.ProductAdapter;
 import com.example.projectkien500k.view.adapter.ViewPagerAdapter;
-import com.example.projectkien500k.view.ui.ProductViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.greenrobot.eventbus.EventBus;

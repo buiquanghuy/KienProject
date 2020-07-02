@@ -16,7 +16,7 @@ import com.example.projectkien500k.R;
 
 public class ProductFragment extends Fragment {
 
-    private ProductViewModel mViewModel;
+    //private ProductViewModel mViewModel;
 
     public static ProductFragment newInstance() {
         return new ProductFragment();
@@ -31,7 +31,7 @@ public class ProductFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
+        //mViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
         // TODO: Use the ViewModel
     }
 

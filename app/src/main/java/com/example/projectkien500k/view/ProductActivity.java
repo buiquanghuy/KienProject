@@ -15,8 +15,10 @@ import com.example.projectkien500k.model.data.Address;
 import com.example.projectkien500k.model.data.Bill;
 import com.example.projectkien500k.model.data.Client;
 import com.example.projectkien500k.model.data.Product;
+import com.example.projectkien500k.model.response.AddressResponse;
 import com.example.projectkien500k.model.response.BillDetailResponse;
 import com.example.projectkien500k.model.response.BillObjectResponse;
+import com.example.projectkien500k.model.viewmodel.addressViewModel;
 import com.example.projectkien500k.model.viewmodel.billViewModel;
 import com.squareup.picasso.Picasso;
 
@@ -31,6 +33,7 @@ public class ProductActivity extends BaseActivity {
 
     ActivityProductBinding binding;
     billViewModel mbillViewModel;
+    addressViewModel maddressViewModel;
 
     Bill bill;
     Client client;
@@ -42,6 +45,7 @@ public class ProductActivity extends BaseActivity {
         binding=ActivityProductBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         mbillViewModel = new ViewModelProvider(this).get(billViewModel.class);
+        maddressViewModel = new ViewModelProvider(this).get(addressViewModel.class);
         binding.toolbar.setTitleTextColor(getColor(R.color.white));
         binding.toolbar.setTitle("Chi tiết sản phẩm");
 
@@ -97,6 +101,21 @@ public class ProductActivity extends BaseActivity {
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMessageEvent(List<Address> event) {
-        listaddress=new ArrayList<>(event);
+        listaddress = new ArrayList<>(event);
+        if(listaddress.size()==0){
+            LoadAddress(client.getId());
+        }
+    }
+
+    private void LoadAddress(Integer id) {
+        maddressViewModel.getAddress(id).observe(ProductActivity.this, new Observer<AddressResponse>() {
+            @Override
+            public void onChanged(AddressResponse addressResponse) {
+                if (addressResponse.getStatus().equals("SUCCESS")) {
+                    List<Address> list = addressResponse.getData();
+                   listaddress.addAll(list);
+                }
+            }
+        });
     }
 }
