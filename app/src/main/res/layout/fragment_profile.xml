@@ -179,7 +179,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:drawableRight="@drawable/ic_baseline_arrow_forward_12dp"
-        android:text="Đơn hàng đang trờ xác nhận"
+        android:text="Đơn hàng đang chờ xác nhận"
         app:layout_constraintEnd_toEndOf="@+id/textView21"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView21"

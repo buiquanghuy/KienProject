@@ -55,6 +55,8 @@ Route::post('bill/orderCart', 'BillController@orderCart')->name('orderCart');
 Route::post('bill/loadbill', 'BillController@loadbill')->name('loadbill');
 Route::post('bill/getListBillDetail', 'BillController@getListBillDetail')->name('getListBillDetail');
 Route::post('bill/removeCart', 'BillController@removeCart')->name('removeCart');
+Route::post('bill/getlistBills', 'BillController@getlistBills')->name('getlistBills');
+
 // Route::post('bill/loadDetailbill', 'BillController@loadDetailbill')->name('loadDetailbill');
 
 
@@ -62,6 +64,7 @@ Route::post('bill/removeCart', 'BillController@removeCart')->name('removeCart');
 Route::post('address/loadaddress', 'AddressController@LoadAddress')->name('tải addres theo id user');
 Route::post('address/updateAddress', 'AddressController@updateAddress')->name('update address nè ');
 Route::post('address/deleteAddress', 'AddressController@deleteAddress')->name('delete address nè ');
+Route::post('address/CreateAddress', 'AddressController@CreateAddress')->name('CreateAddress  nè ');
 
 Route::get('tesss', 'UserController@tesss')->name('delete address nè ');
 

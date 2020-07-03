@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.RegisterActivity"></activity>
+        <activity android:name=".view.AddressActivity"></activity>
+        <activity android:name=".view.ListBillDetailActivity" />
+        <activity android:name=".view.ListBillActivity" />
+        <activity android:name=".view.RegisterActivity" />
         <activity android:name=".view.UpdateUserActivity" />
         <activity android:name=".view.ListProductActivity" />
         <activity android:name=".view.MainActivity" />

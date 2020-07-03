@@ -35,11 +35,7 @@ class AddressController extends Controller
         $address->address = $request->input('address');
         $address->save();
 
-        return response()->json([
-            'status' => 'SUCCESS',
-            'mess' => 'SUCCESS',
-            'data' => null
-        ]);
+        return response()->json($address);
     }
 
     public function updateAddress(Request $request)

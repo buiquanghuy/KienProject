@@ -39,10 +39,11 @@ public class ProductActivity extends BaseActivity {
     Client client;
     Product product;
     ArrayList<Address> listaddress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityProductBinding.inflate(getLayoutInflater());
+        binding = ActivityProductBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         mbillViewModel = new ViewModelProvider(this).get(billViewModel.class);
         maddressViewModel = new ViewModelProvider(this).get(addressViewModel.class);
@@ -56,20 +57,20 @@ public class ProductActivity extends BaseActivity {
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(bill!=null){
-                    mbillViewModel.addExCart(bill.getIdBill(),product.getIdProduct(),product.getPrice()).observe(ProductActivity.this, new Observer<BillDetailResponse>() {
+                if (bill != null) {
+                    mbillViewModel.addExCart(bill.getIdBill(), product.getIdProduct(), product.getPrice()).observe(ProductActivity.this, new Observer<BillDetailResponse>() {
                         @Override
                         public void onChanged(BillDetailResponse billDetailResponse) {
-                            Toast.makeText(ProductActivity.this, ""+billDetailResponse.getMess(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProductActivity.this, "" + billDetailResponse.getMess(), Toast.LENGTH_SHORT).show();
                         }
                     });
-                }else{
-                    mbillViewModel.CreateBill(listaddress.get(0).getId(),client.getId(),product.getIdProduct(),product.getPrice()).observe(ProductActivity.this, new Observer<BillObjectResponse>() {
+                } else {
+                    mbillViewModel.CreateBill(listaddress.get(0).getId(), client.getId(), product.getIdProduct(), product.getPrice()).observe(ProductActivity.this, new Observer<BillObjectResponse>() {
                         @Override
                         public void onChanged(BillObjectResponse billObjectResponse) {
-                            bill=billObjectResponse.getData();
+                            bill = billObjectResponse.getData();
                             EventBus.getDefault().postSticky(bill);
-                            Toast.makeText(ProductActivity.this, ""+billObjectResponse.getMess(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProductActivity.this, "" + billObjectResponse.getMess(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -79,11 +80,11 @@ public class ProductActivity extends BaseActivity {
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Product event) {
-        product=event;
-       binding.textView.setText(""+event.getName());
-       binding.ratingBar.setRating(4);
-       binding.textView3.setText(""+event.getPrice());
-       binding.textView14.setText(""+event.getDescribe());
+        product = event;
+        binding.textView.setText("" + event.getName());
+        binding.ratingBar.setRating(4);
+        binding.textView3.setText("" + event.getPrice());
+        binding.textView14.setText("" + event.getDescribe());
         Picasso.get()
                 .load(event.getImage())
                 .into(binding.imageView);
@@ -91,18 +92,18 @@ public class ProductActivity extends BaseActivity {
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Bill event) {
-        bill=event;
+        bill = event;
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Client event) {
-        client=event;
+        client = event;
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMessageEvent(List<Address> event) {
         listaddress = new ArrayList<>(event);
-        if(listaddress.size()==0){
+        if (listaddress.size() == 0) {
             LoadAddress(client.getId());
         }
     }
@@ -113,7 +114,7 @@ public class ProductActivity extends BaseActivity {
             public void onChanged(AddressResponse addressResponse) {
                 if (addressResponse.getStatus().equals("SUCCESS")) {
                     List<Address> list = addressResponse.getData();
-                   listaddress.addAll(list);
+                    listaddress.addAll(list);
                 }
             }
         });

@@ -20,6 +20,10 @@ public interface APIbill {
     Call<BillResponse> loadBill(@Field("id_client") int id, @Field("status_bill") String stt);
 
     @FormUrlEncoded
+    @POST("bill/getlistBills")
+    Call<BillResponse> getlistBills(@Field("id_client") int id, @Field("status_bill") String stt);
+
+    @FormUrlEncoded
     @POST("bill/getListBillDetail")
     Call<BillDetailResponse> loadDetailBill(@Field("id_bill") int id);
 

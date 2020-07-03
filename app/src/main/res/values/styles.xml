@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">@font/font_framily</item>
     </style>
+
+    <style name="myFullscreenAlertDialogStyle" parent="Theme.AppCompat.Light.NoActionBar">      //no actionbar, but status bar exists
+        <item name="android:windowFullscreen">true</item>                       //remove status bar
+        <item name="colorAccent">@color/colorAccent</item>                      //change button text color
+    </style>
 </resources>

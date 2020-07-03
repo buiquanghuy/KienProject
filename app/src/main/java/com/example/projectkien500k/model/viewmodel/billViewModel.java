@@ -39,6 +39,24 @@ public class billViewModel extends ViewModel {
         return newsData;
     }
 
+    public MutableLiveData<BillResponse> getlistBills(int id, String stt){
+        final MutableLiveData<BillResponse>  newsData = new MutableLiveData<>();
+        apIbill.getlistBills(id,stt).enqueue(new Callback<BillResponse>() {
+            @Override
+            public void onResponse(Call<BillResponse> call, Response<BillResponse> response) {
+                if(response.isSuccessful()){
+                    newsData.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BillResponse> call, Throwable t) {
+
+            }
+        });
+        return newsData;
+    }
+
 
     public MutableLiveData<BillDetailResponse> loadDetailBill(int id){
         final MutableLiveData<BillDetailResponse>  newsData = new MutableLiveData<>();

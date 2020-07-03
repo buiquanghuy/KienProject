@@ -42,7 +42,16 @@ public class CartActivity extends BaseActivity implements onEventAdapter {
         mbillViewModel = new ViewModelProvider(this).get(billViewModel.class);
         list = new ArrayList<>();
         binding.toolbar.setTitleTextColor(getColor(R.color.white));
-//        binding.toolbar.setTitle("Giỏ hàng ("+list.size()+")");
+        binding.toolbar.setTitle("Giỏ hàng ("+list.size()+")");
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            finish();
+            }
+        });
         handleOrderCart();
     }
 
@@ -57,7 +66,6 @@ public class CartActivity extends BaseActivity implements onEventAdapter {
                         list.clear();
                         cartAdapter.notifyDataSetChanged();
                         totalMoney(list);
-
                         Toast.makeText(CartActivity.this, "đặt hàng thành công !", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -132,7 +140,6 @@ public class CartActivity extends BaseActivity implements onEventAdapter {
             }
         });
     }
-
     @Override
     public void onRemoveProduct(DetailBill detail, int position) {
         list.remove(position);

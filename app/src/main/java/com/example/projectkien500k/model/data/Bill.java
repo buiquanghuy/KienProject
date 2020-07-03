@@ -14,6 +14,9 @@ public class Bill {
     @SerializedName("id_address")
     @Expose
     private Integer idAddress;
+    @SerializedName("address")
+    @Expose
+    private String address;
     @SerializedName("id_client")
     @Expose
     private Integer idClient;
@@ -59,6 +62,14 @@ public class Bill {
 
     public void setStatusBill(String statusBill) {
         this.statusBill = statusBill;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 }

@@ -18,20 +18,19 @@ class BillController extends Controller
             ->leftJoin('product', 'detail_bill.id_product', '=', 'product.id_product')
             ->select('product.name', 'product.image', 'product.describe', 'detail_bill.*')
             ->get();
-            if(count($pro)>0){
-                return response()->json([
-                    'status' => 'SUCCESS',
-                    'mess' => 'MESS',
-                    'data' => $pro
-                ]);
-            }else{
-                return response()->json([
-                    'status' => 'FAIL',
-                    'mess' => 'FAIL',
-                    'data' => null
-                ]);
-            }
-
+        if (count($pro) > 0) {
+            return response()->json([
+                'status' => 'SUCCESS',
+                'mess' => 'MESS',
+                'data' => $pro
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'FAIL',
+                'mess' => 'FAIL',
+                'data' => null
+            ]);
+        }
     }
 
 
@@ -49,17 +48,21 @@ class BillController extends Controller
         }
     }
 
-    // public function loadDetailbill(Request $rq)
-    // {
-    //     $billDetail = DB::table('detail_bill')
-    //         ->where('id_bill', $rq->input('id_bill'))
-    //         ->get();
-    //     if (count($billDetail) > 0) {
-    //         return response()->json(['status' => 'SUCCESS', 'mess' => 'SUCCESS', 'data' => $billDetail]);
-    //     } else {
-    //         return response()->json(['status' => 'FAIL', 'mess' => 'Chưa có detailbill ', 'data' => null]);
-    //     }
-    // }
+    public function getlistBills(Request $rq)
+    {
+        $bill = DB::table('bill')
+            ->where('bill.id_client', $rq->input('id_client'))
+            ->where('status_bill', $rq->input('status_bill'))
+            ->leftJoin('address', 'bill.id_address', '=', 'address.id')
+            ->select('address.address', 'bill.*')
+            ->get();
+
+        if (count($bill) > 0) {
+            return response()->json(['status' => 'SUCCESS', 'mess' => 'SUCCESS', 'data' => $bill]);
+        } else {
+            return response()->json(['status' => 'FAIL', 'mess' => 'Chưa có bill ', 'data' => null]);
+        }
+    }
 
     public function addExCart(Request $rq)
     {
@@ -131,18 +134,18 @@ class BillController extends Controller
 
     public function orderCart(Request $rq)
     {
-        $id_bill=null;
+        $id_bill = null;
         $data =  json_decode($rq->getContent(), true); // ok ok ne
         foreach ($data as $value) {
-            $id_bill=$value['id_bill'];
+            $id_bill = $value['id_bill'];
             DB::table('product')
-            ->where('id_product', $value['id_product'])
-            ->decrement('quantity',$value['quantity']);
+                ->where('id_product', $value['id_product'])
+                ->decrement('quantity', $value['quantity']);
         }
 
         $affected = DB::table('bill')
-        ->where('id_bill', $id_bill)
-        ->update(['status_bill' => 'b2']);
+            ->where('id_bill', $id_bill)
+            ->update(['status_bill' => 'b2']);
 
         return response()->json(['status' => 'SUCCESS', 'mess' => 'đặt hàng thành công rồi nè', 'data' => null]);
     }
@@ -150,12 +153,9 @@ class BillController extends Controller
     public function removeCart(Request $rq)
     {
         $billDetail = DB::table('detail_bill')
-        ->where('id_detail', $rq->input('id_detail'))
-        ->delete();
+            ->where('id_detail', $rq->input('id_detail'))
+            ->delete();
 
         return response()->json(['status' => 'SUCCESS', 'mess' => 'đã xóa thành công', 'data' => null]);
     }
-
-
-
 }

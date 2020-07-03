@@ -11,6 +11,7 @@ public class AddressResponse extends BaseResponse{
     @SerializedName("data")
     @Expose
     private List<Address> data;
+
     public AddressResponse(String status, String mess, List<Address> data) {
         super(status, mess);
         this.data=data;
