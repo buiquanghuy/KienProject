@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Tài khoản"
-            android:text="tungnui"
+            android:text="duykien"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Mật khẩu"
-            android:text="tungnui"
+            android:text="duykien"
             android:inputType="textPassword"
             android:textSize="16sp" />
 
