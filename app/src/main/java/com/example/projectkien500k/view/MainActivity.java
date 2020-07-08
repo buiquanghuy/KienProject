@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity {
     billViewModel billViewModel;
     addressViewModel addressViewModel;
     Client client;
-
+     NavController navController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
-        final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -109,6 +109,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(MainActivity.this, CartActivity.class));
                 return true;
             case R.id.menu_search:
+                navController.navigate(R.id.navigation_search);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

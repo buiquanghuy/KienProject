@@ -108,6 +108,9 @@ class ProductController extends Controller
         $pro = DB::table('product')
                 ->where('name', 'like', "%{$name}%")
                 ->orWhere('describe', 'like',"%{$name}%")
+                ->orWhere('size', 'like',"%{$name}%")
+                ->orWhere('trade', 'like',"%{$name}%")
+                ->orWhere('producer', 'like',"%{$name}%")
                 ->get();
                 if(count($pro) == 0){
                     return response()->json([

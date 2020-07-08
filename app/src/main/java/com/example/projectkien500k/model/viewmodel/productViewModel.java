@@ -109,4 +109,22 @@ public class productViewModel extends ViewModel {
         return newsData;
     }
 
+    public MutableLiveData<ProductResponse> searchProduct(String name){
+        final MutableLiveData<ProductResponse>  newsData = new MutableLiveData<>();
+        apIproduct.searchProduct(name).enqueue(new Callback<ProductResponse>() {
+            @Override
+            public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
+                if(response.isSuccessful()){
+                    newsData.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProductResponse> call, Throwable t) {
+
+            }
+        });
+        return newsData;
+    }
+
 }

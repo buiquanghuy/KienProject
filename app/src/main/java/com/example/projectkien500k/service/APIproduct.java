@@ -27,4 +27,9 @@ public interface APIproduct {
     @FormUrlEncoded
     @POST("product/getAllWithType")
     Call<ProductResponse> getProductWithType(@Field("id_type") int id_type);
+
+    @FormUrlEncoded
+    @POST("product/searchProduct")
+    Call<ProductResponse> searchProduct(@Field("name") String name);
+
 }
