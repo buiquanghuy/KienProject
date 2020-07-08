@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projectkien500k.R;
 import com.example.projectkien500k.databinding.ItemProductBinding;
 import com.example.projectkien500k.model.data.Product;
-import com.example.projectkien500k.model.viewmodel.ViewProduct;
 import com.example.projectkien500k.utils.RoundedTransformation;
 import com.squareup.picasso.Picasso;
 
@@ -21,10 +20,10 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     Context context;
-    List<ViewProduct> list;
+    List<Product> list;
     OnClickItemProduct onClickItemProduct;
 
-    public ProductAdapter(Context context, List<ViewProduct> list, OnClickItemProduct onClickItemProduct) {
+    public ProductAdapter(Context context, List<Product> list, OnClickItemProduct onClickItemProduct) {
         this.context = context;
         this.list = list;
         this.onClickItemProduct = onClickItemProduct;

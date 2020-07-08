@@ -33,6 +33,25 @@ public class  Product {
     @Expose
     private Integer quantity;
 
+    @SerializedName("producer")
+    @Expose
+    private String producer;
+
+    @SerializedName("size")
+    @Expose
+    private String size;
+
+    @SerializedName("trade")
+    @Expose
+    private String trade;
+    @SerializedName("quantitysale")
+    @Expose
+    private Integer quantitysale;
+    @SerializedName("rate")
+    @Expose
+    private Integer rate;
+
+
     public Product(Integer idProduct, String name, String image, String describe, Integer price, Integer idType, Integer love, Integer quantity) {
         this.idProduct = idProduct;
         this.name = name;
@@ -115,5 +134,45 @@ public class  Product {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public void setProducer(String producer) {
+        this.producer = producer;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getTrade() {
+        return trade;
+    }
+
+    public void setTrade(String trade) {
+        this.trade = trade;
+    }
+
+    public Integer getQuantitysale() {
+        return quantitysale;
+    }
+
+    public void setQuantitysale(Integer quantitysale) {
+        this.quantitysale = quantitysale;
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public void setRate(Integer rate) {
+        this.rate = rate;
     }
 }

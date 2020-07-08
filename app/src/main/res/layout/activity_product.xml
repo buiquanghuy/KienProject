@@ -116,7 +116,7 @@
             android:layout_marginTop="8dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:text="Danh mục"
+            android:text="Đã bán"
             app:layout_constraintEnd_toStartOf="@+id/textView5"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

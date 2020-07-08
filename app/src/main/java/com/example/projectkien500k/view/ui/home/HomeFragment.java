@@ -40,7 +40,7 @@ import java.util.TimerTask;
 
 public class HomeFragment extends Fragment implements ProductAdapter.OnClickItemProduct {
 
-    private HomeViewModel homeViewModel;
+
     private productViewModel productViewModel;
     private bannerViewModel mbannerViewModel;
     private FragmentHomeBinding binding;
@@ -50,9 +50,9 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
     ProductAdapter forUProductAdapter;
     Handler handler;
     Runnable Update;
-    List<ViewProduct> list=new ArrayList<>();
-    List<ViewProduct> listTopProduct=new ArrayList<>();
-    List<ViewProduct> listforUProduct=new ArrayList<>();
+    List<Product> list=new ArrayList<>();
+    List<Product> listTopProduct=new ArrayList<>();
+    List<Product> listforUProduct=new ArrayList<>();
     List<String> listBanner=new ArrayList<>();
     // để viewpapger chạy nhé bạn
     int currentPage = 0;
@@ -64,8 +64,6 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding=FragmentHomeBinding.inflate(inflater,container,false);
-
-        homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         productViewModel = new ViewModelProvider(requireActivity()).get(productViewModel.class);
         mbannerViewModel=new ViewModelProvider(requireActivity()).get(bannerViewModel.class);
 
@@ -78,14 +76,6 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
         initProductAdapter();
         populateData();
 
-
-        homeViewModel.setDataListProduct(new ArrayList<ViewProduct>());
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-             //   textView.setText(s);
-            }
-        });
         ((MainActivity) getActivity()).setTitle(R.string.title_home);
         return root;
     }
@@ -96,11 +86,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
             public void onChanged(ProductResponse productResponse) {
                 if(productResponse != null){
                     if(productResponse.getStatus().equals("SUCCESS")){
-                        List<Product> listpro = productResponse.getData();
-                        for (int i=0;i<listpro.size();i++){
-                            Product pro =listpro.get(i);
-                            list.add(new ViewProduct(pro.getName(),pro.getPrice(),pro.getIdProduct(),pro.getDescribe(),pro.getImage()));
-                        }
+                        list.addAll(productResponse.getData());
                         productAdapter.notifyDataSetChanged();
                     }
                 }
@@ -113,11 +99,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
             public void onChanged(ProductResponse productResponse) {
                 if(productResponse != null){
                     if(productResponse.getStatus().equals("SUCCESS")){
-                        List<Product> listpro = productResponse.getData();
-                        for (int i=0;i<listpro.size();i++){
-                            Product pro = listpro.get(i);
-                            listTopProduct.add(new ViewProduct(pro.getName(),pro.getPrice(),pro.getIdProduct(),pro.getDescribe(),pro.getImage()));
-                        }
+                        listTopProduct.addAll(productResponse.getData());
                         topProductAdapter.notifyDataSetChanged();
                     }
                 }
@@ -130,11 +112,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
             public void onChanged(ProductResponse productResponse) {
                 if(productResponse != null){
                     if(productResponse.getStatus().equals("SUCCESS")){
-                        List<Product> listpro = productResponse.getData();
-                        for (int i=0;i<listpro.size();i++){
-                            Product pro =listpro.get(i);
-                            listforUProduct.add(new ViewProduct(pro.getName(),pro.getPrice(),pro.getIdProduct(),pro.getDescribe(),pro.getImage()));
-                        }
+                        listforUProduct.addAll(productResponse.getData());
                         forUProductAdapter.notifyDataSetChanged();
                     }
                 }

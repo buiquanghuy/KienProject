@@ -82,9 +82,13 @@ public class ProductActivity extends BaseActivity {
     public void onMessageEvent(Product event) {
         product = event;
         binding.textView.setText("" + event.getName());
-        binding.ratingBar.setRating(4);
+        binding.ratingBar.setRating(event.getRate() != null ? event.getRate() : 0);
         binding.textView3.setText("" + event.getPrice());
         binding.textView14.setText("" + event.getDescribe());
+        binding.textView5.setText("" + event.getQuantitysale());
+        binding.textView8.setText("" + event.getProducer());
+        binding.textView10.setText("" + event.getSize());
+        binding.textView12.setText("" + event.getTrade());
         Picasso.get()
                 .load(event.getImage())
                 .into(binding.imageView);

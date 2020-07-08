@@ -38,7 +38,7 @@ public class ListProductActivity extends BaseActivity implements ProductAdapter.
         ActivityListProductBinding binding;
 
         ProductAdapter adapter;
-        ArrayList<ViewProduct> list = new ArrayList<>();
+        ArrayList<Product> list = new ArrayList<>();
 
         Client client;
 
