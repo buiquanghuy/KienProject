@@ -148,10 +148,11 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
     private void updateAddress(final Address address, final int position) {
         address.setPhoneNumber(dialogBinding.edtPhone.getText().toString());
         address.setAddress(dialogBinding.edtAddress.getText().toString());
+        // bước 1
         maddressViewModel.updateAddress(address.getId(), address.getPhoneNumber(), address.getAddress()).observe(this, new Observer<AddressResponse>() {
             @Override
-            public void onChanged(AddressResponse addressResponse) {
-                list.set(position, address);
+            public void onChanged(AddressResponse addressResponse) { // bước 5
+                list.set(position, address); // bướcc 6 lấy dữ liệu từ server trả về và xử lý logic
                 addressAdapter.notifyDataSetChanged();
                 dialog.dismiss();
             }

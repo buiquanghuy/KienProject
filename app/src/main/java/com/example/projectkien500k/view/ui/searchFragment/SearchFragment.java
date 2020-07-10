@@ -49,7 +49,7 @@ public class SearchFragment extends Fragment implements ProductAdapter.OnClickIt
         return binding.getRoot();
     }
 
-    private void search() {
+    private void search() { // hàm bắt dữ liệu khi search
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -57,24 +57,24 @@ public class SearchFragment extends Fragment implements ProductAdapter.OnClickIt
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
+            public boolean onQueryTextChange(String newText) { // khi text thay đổi
                     populateData(newText);
                 return false;
             }
         });
     }
 
-    private void initProductAdapter() {
+    private void initProductAdapter() { // khởi tạo recycler view
         productAdapter = new ProductAdapter(getContext(), list, this);
         binding.rclist.setLayoutManager(new GridLayoutManager(getContext(), 3));
         binding.rclist.setAdapter(productAdapter);
     }
 
-    private void populateData(String name) { // tải dữ liệu về
+    private void populateData(String name) { // tải dữ liệu về và gán vào recycler view bước 1 (yêu cầu )
         productViewModel.searchProduct(name).observe(requireActivity(), new Observer<ProductResponse>() {
             @Override
-            public void onChanged(ProductResponse productResponse) {
-                if (productResponse != null) {
+            public void onChanged(ProductResponse productResponse) { // nhận dữ liệu  (bước 4)
+                if (productResponse != null) { // xử lý logic
                     if (productResponse.getStatus().equals("SUCCESS")) {
                         list.addAll(productResponse.getData());
                         productAdapter.notifyDataSetChanged();

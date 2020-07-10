@@ -109,12 +109,12 @@ public class productViewModel extends ViewModel {
         return newsData;
     }
 
-    public MutableLiveData<ProductResponse> searchProduct(String name){
+    public MutableLiveData<ProductResponse> searchProduct(String name){ // bước 1
         final MutableLiveData<ProductResponse>  newsData = new MutableLiveData<>();
-        apIproduct.searchProduct(name).enqueue(new Callback<ProductResponse>() {
+        apIproduct.searchProduct(name).enqueue(new Callback<ProductResponse>() {//cấu hình
             @Override
             public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
-                if(response.isSuccessful()){
+                if(response.isSuccessful()){ // kiểm tra tính toàn vẹn của dữ liệu
                     newsData.setValue(response.body());
                 }
             }

@@ -40,12 +40,12 @@ class AddressController extends Controller
 
     public function updateAddress(Request $request)
     {
-        $address = Address::find($request->input('id_address'));
+        $address = Address::find($request->input('id_address'));// bước 3
         if ($address != null) {
             $address->phone_number = $request->input('phone');
             $address->address = $request->input('address');
             $address->save();
-            return response()->json([
+            return response()->json([ // bước 4 
                 'status' => 'SUCCESS',
                 'mess' => 'update thành công rồi nè :v ',
                 'data' => null

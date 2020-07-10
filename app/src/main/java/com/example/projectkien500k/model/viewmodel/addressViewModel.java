@@ -57,11 +57,12 @@ public class addressViewModel extends ViewModel {
 
     public MutableLiveData<AddressResponse> updateAddress(int idAddress,String phone,String address){
         final MutableLiveData<AddressResponse>  newsData = new MutableLiveData<>();
+        // bước 2
         apIaddress.updateAddress(idAddress,phone,address).enqueue(new Callback<AddressResponse>() {
             @Override
             public void onResponse(Call<AddressResponse> call, Response<AddressResponse> response) {
                 if(response.isSuccessful()){
-                    newsData.setValue(response.body());
+                    newsData.setValue(response.body()); // bước 5
                 }
             }
 

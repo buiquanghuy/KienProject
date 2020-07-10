@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -62,6 +63,7 @@ public class ProductActivity extends BaseActivity {
                         @Override
                         public void onChanged(BillDetailResponse billDetailResponse) {
                             Toast.makeText(ProductActivity.this, "" + billDetailResponse.getMess(), Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(ProductActivity.this,MainActivity.class));
                         }
                     });
                 } else {
@@ -71,6 +73,7 @@ public class ProductActivity extends BaseActivity {
                             bill = billObjectResponse.getData();
                             EventBus.getDefault().postSticky(bill);
                             Toast.makeText(ProductActivity.this, "" + billObjectResponse.getMess(), Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(ProductActivity.this,MainActivity.class));
                         }
                     });
                 }

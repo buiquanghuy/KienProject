@@ -15,6 +15,7 @@ public interface APIproduct {
 
     @GET("product/getAll")
     Call<ProductResponse> getAllProduct();
+
     @GET("product/getTopProduct")
     Call<ProductResponse> getTopProduct();
 

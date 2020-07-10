@@ -103,16 +103,16 @@ class ProductController extends Controller
             }
        }
 
-       public function searchProduct(Request $request){ // load sản phẩm theo tên (gần đúng)
-        $name=$request->input('name');
-        $pro = DB::table('product')
+       public function searchProduct(Request $request){ // load sản phẩm theo tên (gần đúng) bước 2 
+        $name=$request->input('name'); // nhận dữ liệu từ android truyền lên 
+        $pro = DB::table('product') // xử lý dữ liệu 
                 ->where('name', 'like', "%{$name}%")
                 ->orWhere('describe', 'like',"%{$name}%")
                 ->orWhere('size', 'like',"%{$name}%")
                 ->orWhere('trade', 'like',"%{$name}%")
                 ->orWhere('producer', 'like',"%{$name}%")
                 ->get();
-                if(count($pro) == 0){
+                if(count($pro) == 0){ // bướcc 3 trả dữ liệu dạng json về android 
                     return response()->json([
                         'status' => 'FAIL',
                          'mess' => 'không có sản phẩm nào ',
@@ -127,10 +127,9 @@ class ProductController extends Controller
                     }
     }
 
-    public function getTopProduct(){ // load sản phẩm theo tên (gần đúng)
-        $pro = DB::table('detail_bill')
-        ->leftJoin('product', 'detail_bill.id_product', '=', 'product.id_product')
-        ->select('product.*')
+    public function getTopProduct(){ // load sản phẩm bán chạy nhất
+        $pro = DB::table('product')
+        ->orderBy('quantitysale', 'desc')
         ->take(5)
         ->get();
         return response()->json([
@@ -140,7 +139,7 @@ class ProductController extends Controller
             ]);
     }
 
-    public function getProductForU(){ // load sản phẩm theo tên (gần đúng)
+    public function getProductForU(){ // load sản phẩm theo random 
         $pro = DB::table('product')
         ->inRandomOrder()
         ->limit(5)
