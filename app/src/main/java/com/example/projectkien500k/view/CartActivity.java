@@ -4,6 +4,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -59,16 +60,23 @@ public class CartActivity extends BaseActivity implements onEventAdapter {
         binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mbillViewModel.orderCart(list).observe(CartActivity.this, new Observer<BillDetailResponse>() {
-                    @Override
-                    public void onChanged(BillDetailResponse billDetailResponse) {
-                        EventBus.getDefault().removeStickyEvent(bill);
-                        list.clear();
-                        cartAdapter.notifyDataSetChanged();
-                        totalMoney(list);
-                        Toast.makeText(CartActivity.this, "đặt hàng thành công !", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                if(list.size()>0){
+                    mbillViewModel.orderCart(list).observe(CartActivity.this, new Observer<BillDetailResponse>() {
+                        @Override
+                        public void onChanged(BillDetailResponse billDetailResponse) {
+                            EventBus.getDefault().removeStickyEvent(bill);
+                            list.clear();
+                            cartAdapter.notifyDataSetChanged();
+                            totalMoney(list);
+                            startActivity(new Intent(CartActivity.this,MainActivity.class));
+                            Toast.makeText(CartActivity.this, "đặt hàng thành công !", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else{
+                    list.clear();
+                    Toast.makeText(CartActivity.this, "chưa có mặt hàng trong giỏ hàng ", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

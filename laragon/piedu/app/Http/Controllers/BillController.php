@@ -141,6 +141,10 @@ class BillController extends Controller
             DB::table('product')
                 ->where('id_product', $value['id_product'])
                 ->decrement('quantity', $value['quantity']);
+
+                DB::table('product')
+                ->where('id_product', $value['id_product'])
+                ->increment('quantitysale', $value['quantity']);
         }
 
         $affected = DB::table('bill')

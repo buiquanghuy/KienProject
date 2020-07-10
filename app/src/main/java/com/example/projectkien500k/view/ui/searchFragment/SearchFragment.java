@@ -76,6 +76,7 @@ public class SearchFragment extends Fragment implements ProductAdapter.OnClickIt
             public void onChanged(ProductResponse productResponse) { // nhận dữ liệu  (bước 4)
                 if (productResponse != null) { // xử lý logic
                     if (productResponse.getStatus().equals("SUCCESS")) {
+                        list.clear();
                         list.addAll(productResponse.getData());
                         productAdapter.notifyDataSetChanged();
                     }
