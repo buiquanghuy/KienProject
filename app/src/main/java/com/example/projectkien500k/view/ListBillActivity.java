@@ -46,7 +46,7 @@ public class ListBillActivity extends BaseActivity implements onEventBillAdapter
         populateData();
     }
 
-    private void populateData() {
+    private void populateData() { // tải dữ liệu bill về theo cái status vừa lưu
         mbillViewModel.getlistBills(Common.mclient.getId(), Common.stt).observe(this, new Observer<BillResponse>() {
             @Override
             public void onChanged(BillResponse billResponse) {

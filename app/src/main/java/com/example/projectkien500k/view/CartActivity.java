@@ -56,7 +56,7 @@ public class CartActivity extends BaseActivity implements onEventAdapter {
         handleOrderCart();
     }
 
-    private void handleOrderCart() { // xử lý đặt hàng
+    private void handleOrderCart() { // xử lý đặt hàng gửi lên danh sách sản phẩm hiện có trong giỏ hàng lên server để lưu lại
         binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +81,7 @@ public class CartActivity extends BaseActivity implements onEventAdapter {
         });
     }
 
-    private void populateDataCart(int id_bill) {
+    private void populateDataCart(int id_bill) { // load giỏ hàng theo id bill
         mbillViewModel.loadDetailBill(id_bill).observe(CartActivity.this, new Observer<BillDetailResponse>() {
             @Override
             public void onChanged(BillDetailResponse billDetailResponse) {

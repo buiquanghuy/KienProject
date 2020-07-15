@@ -50,7 +50,18 @@ public class ProductActivity extends BaseActivity {
         maddressViewModel = new ViewModelProvider(this).get(addressViewModel.class);
         binding.toolbar.setTitleTextColor(getColor(R.color.white));
         binding.toolbar.setTitle("Chi tiết sản phẩm");
-
+        binding.textView15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(binding.textView14.getMaxLines()==10){
+                    binding.textView14.setMaxLines(2);
+                    binding.textView15.setText("Xem thêm");
+                }else {
+                    binding.textView14.setMaxLines(10);
+                    binding.textView15.setText("Thu gọn");
+                }
+            }
+        });
         handleOrder();
     }
 

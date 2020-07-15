@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
         return root;
     }
 
-    private void populateData() { // tải dữ liệu về
+    private void populateData() { // load tâst cả sản phẩm
         productViewModel.getAllProduct().observe(requireActivity(), new Observer<ProductResponse>() {
             @Override
             public void onChanged(ProductResponse productResponse) {
@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
 
             }
         });
-
+                // load sản phẩm bán chạy
         productViewModel.getTopProduct().observe(requireActivity(), new Observer<ProductResponse>() {
             @Override
             public void onChanged(ProductResponse productResponse) {
@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
 
             }
         });
-
+            // load danh sách sản phẩm dành cho bạn
         productViewModel.getProductForU().observe(requireActivity(), new Observer<ProductResponse>() {
             @Override
             public void onChanged(ProductResponse productResponse) {
@@ -119,7 +119,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnClickItem
 
             }
         });
-
+            // tải banner
         mbannerViewModel.getBanner().observe(requireActivity(), new Observer<List<Banner>>() {
             @Override
             public void onChanged(List<Banner> banner) {

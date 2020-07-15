@@ -81,11 +81,8 @@ public class ListProductActivity extends BaseActivity implements ProductAdapter.
             public void onChanged(ProductResponse productResponse) {
                 if(productResponse != null){
                     if(productResponse.getStatus().equals("SUCCESS")){
-                        List<Product> listpro = productResponse.getData();
-                        for (int i=0;i<listpro.size();i++){
-                            Product pro =listpro.get(i);
-                            list.add(new ViewProduct(pro.getName(),pro.getPrice(),pro.getIdProduct(),pro.getDescribe(),pro.getImage()));
-                        }
+                        list.clear();
+                        list.addAll(productResponse.getData());
                         adapter.notifyDataSetChanged();
                     }
                 }

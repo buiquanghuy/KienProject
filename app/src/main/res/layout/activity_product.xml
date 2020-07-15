@@ -260,6 +260,7 @@
             android:layout_marginTop="8dp"
             android:maxLines="2"
             android:minLines="1"
+            android:ellipsize="end"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="@+id/textView13"
             app:layout_constraintStart_toStartOf="@+id/textView13"
